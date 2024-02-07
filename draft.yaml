@@ -1,0 +1,52 @@
+models:
+  Node:
+    owner_id: id foreign:users
+    name: string
+    body: string
+    excerpt: string
+    slug: string
+    status: string
+    type: string
+    comment_status: string
+  NodeMeta:
+    node_id: id foreign:nodes
+    meta_key: string
+    meta_value: string
+  Term:
+    name: string
+    slug: string
+    taxonomy: string
+
+  NodeTerm:
+    node_id: integer
+    term_id: integer
+    weight: integer
+
+  Document:
+    user_id: id foreign:users
+    name: string
+    path: string
+    mime_type: string
+    size: integer  
+
+  UserMeta:
+    user_id: id foreign:users
+    meta_key: string
+    meta_value: string 
+
+  Option:
+    option_key: string
+    option_value: string 
+    is_autoload: boolean 
+
+  Comment:
+    node_id: id foreign:nodes
+    author_id: id foreign:users
+    parent_id: integer nullable
+    comment: string nullable
+    status: string default:pending
+    comment_date: datetime 
+    # comment_date_gmt: datetime
+    rating: integer default:0
+controllers:
+  # ...
