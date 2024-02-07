@@ -1,2 +1,35 @@
+created:
+    - database/factories/NodeFactory.php
+    - database/factories/NodeMetaFactory.php
+    - database/factories/TermFactory.php
+    - database/factories/NodeTermFactory.php
+    - database/factories/DocumentFactory.php
+    - database/factories/UserMetaFactory.php
+    - database/factories/OptionFactory.php
+    - database/factories/CommentFactory.php
+    - database/migrations/2024_02_07_182141_create_nodes_table.php
+    - database/migrations/2024_02_07_182142_create_node_metas_table.php
+    - database/migrations/2024_02_07_182143_create_terms_table.php
+    - database/migrations/2024_02_07_182144_create_node_terms_table.php
+    - database/migrations/2024_02_07_182145_create_documents_table.php
+    - database/migrations/2024_02_07_182146_create_user_metas_table.php
+    - database/migrations/2024_02_07_182147_create_options_table.php
+    - database/migrations/2024_02_07_182148_create_comments_table.php
+    - app/Models/Node.php
+    - app/Models/NodeMeta.php
+    - app/Models/Term.php
+    - app/Models/NodeTerm.php
+    - app/Models/Document.php
+    - app/Models/UserMeta.php
+    - app/Models/Option.php
+    - app/Models/Comment.php
 models:
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Node: { owner_id: 'id foreign:users', name: string, body: string, excerpt: string, slug: string, status: string, type: string, comment_status: string }
+    NodeMeta: { node_id: 'id foreign:nodes', meta_key: string, meta_value: string }
+    Term: { name: string, slug: string, taxonomy: string }
+    NodeTerm: { node_id: integer, term_id: integer, weight: integer }
+    Document: { user_id: 'id foreign:users', name: string, path: string, mime_type: string, size: integer }
+    UserMeta: { user_id: 'id foreign:users', meta_key: string, meta_value: string }
+    Option: { option_key: string, option_value: string, is_autoload: boolean }
+    Comment: { node_id: 'id foreign:nodes', author_id: 'id foreign:users', parent_id: 'integer nullable', comment: 'string nullable', status: 'string default:pending', comment_date: datetime, rating: 'integer default:0' }
