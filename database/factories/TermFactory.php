@@ -20,10 +20,15 @@ class TermFactory extends Factory
      */
     public function definition(): array
     {
+        $terms = [
+            'category',
+            'tag',
+        ];
+
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'taxonomy' => $this->faker->word(),
+            'name' => ucfirst($this->faker->word()),
+            // 'slug' => $this->faker->slug(),
+            'taxonomy' => $this->faker->randomElement($terms),
         ];
     }
 }

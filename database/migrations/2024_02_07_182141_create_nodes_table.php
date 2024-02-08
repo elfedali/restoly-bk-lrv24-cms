@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('nodes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('owner_id')->constrained('users');
-            $table->string('name');
-            $table->string('body');
-            $table->string('excerpt')->nullable();
+            $table->string('title');
+            $table->text('body');
+            $table->text('excerpt')->nullable();
             $table->string('slug')->unique();
             $table->string('status')->default('draft');
             $table->string('type')->default('post');

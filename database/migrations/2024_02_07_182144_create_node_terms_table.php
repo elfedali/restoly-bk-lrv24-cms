@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('node_id');
             $table->integer('term_id');
-            $table->integer('weight');
+            $table->integer('weight')->default(0);
             $table->timestamps();
         });
 

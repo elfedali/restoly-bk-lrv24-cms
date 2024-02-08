@@ -23,13 +23,13 @@ class NodeFactory extends Factory
     {
         return [
             'owner_id' => User::factory(),
-            'name' => $this->faker->name(),
-            'body' => $this->faker->word(),
-            'excerpt' => $this->faker->word(),
-            'slug' => $this->faker->slug(),
-            'status' => $this->faker->word(),
-            'type' => $this->faker->word(),
-            'comment_status' => $this->faker->word(),
+            'title' => $this->faker->sentence(),
+            'body' => $this->faker->paragraph(),
+            'excerpt' => $this->faker->paragraph(),
+            //'slug' => $this->faker->slug(),
+            'status' => $this->faker->randomElement(['published', 'draft', 'private']),
+            'type' => $this->faker->randomElement(['post', 'page']),
+            'comment_status' => $this->faker->randomElement(['open', 'closed']),
         ];
     }
 }

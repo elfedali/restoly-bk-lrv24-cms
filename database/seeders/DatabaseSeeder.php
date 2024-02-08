@@ -18,5 +18,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'm@m.m',
         ]);
+
+        \App\Models\Node::factory(10)->create();
+        \App\Models\Term::factory(10)->create();
+
+        $nodes = \App\Models\Node::all();
+        $terms = \App\Models\Term::all();
+
+        $nodes->each(function ($node) use ($terms) {
+            $node->terms()->attach(
+                $terms->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
     }
 }

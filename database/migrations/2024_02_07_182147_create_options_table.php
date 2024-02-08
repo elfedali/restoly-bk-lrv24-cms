@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->string('option_key');
+            $table->string('option_key')->unique();
             $table->string('option_value');
             $table->boolean('is_autoload');
             $table->timestamps();

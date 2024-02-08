@@ -28,7 +28,7 @@ class Node extends Model
      */
     protected $fillable = [
         'owner_id',
-        'name',
+        'title',
         'body',
         'excerpt',
         'slug',
@@ -53,12 +53,17 @@ class Node extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
 
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function terms()
+    {
+        return $this->belongsToMany(Term::class, 'node_terms');
     }
 }

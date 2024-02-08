@@ -14,14 +14,15 @@
     @vite(['resources/sass/admin.scss', 'resources/js/admin.js'])
 </head>
 
-<body class="bg-light">
+<body class="_bg-light">
     <section class="container-fluid">
         <div class="row">
-            <div class="col-xl-2 col-lg-3 bg-dark text-light vh-100">
+            <div class="col-2 bg-dark text-light vh-100">
                 @include('admin.layouts._sidebar')
             </div>
             <!-- /.col-lg-3 -->
-            <main class="col-xl-10 col-lg-9">
+            <main class="col-10 pt-4">
+                @include('admin.layouts._messages')
                 @yield('content')
             </main>
             <!-- /.col-lg-9 -->

@@ -28,6 +28,11 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('admin.node', [App\Constants\RouteConstants::NODE_TYPE => 'shop']) }}">
+                {{ __('label.shops') }}
+            </a>
+        </li>
+        <li>
             <a href="{{ route('admin.upload') }}">
                 {{ __('label.media') }}
             </a>

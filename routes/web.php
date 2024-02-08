@@ -60,12 +60,27 @@ Route::prefix(
     })->name(RouteConstants::ADMIN_NODE);
     // node edit
     Route::any('/node/edit/{node}', function (Request $request, Node $node) {
+        if ($request->isMethod('put')) {
+            $nodeService = new NodeService();
+            return $nodeService->updateNode($request, $node);
+        }
+        return view('admin.node.node_edit', [
+            'node' => $node,
+            'categories' => \App\Models\Term::where('taxonomy', \App\Models\Term::TAXONOMY_CATEGORY)->get(),
+            'tags' => \App\Models\Term::where('taxonomy', \App\Models\Term::TAXONOMY_TAG)->get()
 
-        return view('admin.node.node_edit', ['node' => $node]);
+        ]);
     })->name(RouteConstants::ADMIN_NODE . '.edit');
     // node create
     Route::any('/node/create', function (Request $request) {
-        return view('admin.node.node_create', ['node_type' => $request->get(RouteConstants::NODE_TYPE) ?? RouteConstants::NODE_TYPE_POST]);
+        return view(
+            'admin.node.node_create',
+            [
+                'node_type' => $request->get(RouteConstants::NODE_TYPE) ?? RouteConstants::NODE_TYPE_POST,
+                'categories' => \App\Models\Term::where('taxonomy', \App\Models\Term::TAXONOMY_CATEGORY)->get(),
+                'tags' => \App\Models\Term::where('taxonomy', \App\Models\Term::TAXONOMY_TAG)->get()
+            ]
+        );
     })->name(RouteConstants::ADMIN_NODE . '.create');
 
 
